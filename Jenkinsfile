@@ -31,8 +31,8 @@ pipeline {
            steps{
                withCredentials([usernamePassword(credentialsId: 'eac9cdca-a1a0-4d58-86f2-4928f02a64e9', passwordVariable: 'DOCKER_HUB_PASSWORD', usernameVariable: 'DOCKER_HUB_USERNAME')]) {
                     sh 'echo $DOCKER_HUB_PASSWORD | docker login -u $DOCKER_HUB_USERNAME --password-stdin' 
-                    echo 'Push to Repo'
-                    docker push appasaheb3/cicd-e2e:${BUILD_NUMBER}
+                    sh 'echo "Push to Repo"
+                    sh "docker push appasaheb3/cicd-e2e:${BUILD_NUMBER}"
                 }
             }
         }
